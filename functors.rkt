@@ -28,7 +28,7 @@
     (values map source target)
     ))
 
-(define (identityfunct cat)
+(define (IdentityFunct cat)
   (functor (λ (x)
              (cond
                [(set-member? (category-objects cat) x)
@@ -37,7 +37,7 @@
                 x]))
            cat cat))
 
-(define (!-funct cat)
+(define (!-Funct cat)
   (functor (λ (x)
              (cond
                [(set-member? (category-objects cat) x)
