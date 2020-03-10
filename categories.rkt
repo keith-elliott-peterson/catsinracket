@@ -99,33 +99,4 @@
             composer
             first second))
 
-(define Triangle
-  (category (set 1 2 3)
-            (set (list 1 1 identity)
-                 (list 2 2 identity)
-                 (list 3 3 identity)
-                 (list 1 2 add1)
-                 (list 2 3 add1)
-                 (list 1 3 (list add1 add1)))
-            (λ (x) (list x x identity))
-            composer
-            first second))
-
-(define Tetrahedron
-  (category (set 1 2 3 4)
-            (set (list 1 1 identity)
-                 (list 2 2 identity)
-                 (list 3 3 identity)
-                 (list 4 4 identity)
-                 (list 1 2 add1)
-                 (list 2 3 add1)
-                 (list 3 4 add1)
-                 (list 1 3 (list add1 add1))
-                 (list 1 4 (list add1 add1 add1))
-                 (list 2 4 (list add1 add1))
-                 )
-            (λ (x) (list x x identity))
-            composer
-            first second))
-
 (provide (all-defined-out))
