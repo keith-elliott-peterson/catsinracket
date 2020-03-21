@@ -2,6 +2,7 @@
 
 (struct category
   (objects morphisms identities composition source target)
+  #:transparent
   #:guard
   (λ (objects morphisms identities composition source target this)
     (unless
@@ -62,6 +63,10 @@
     (values objects morphisms identities composition source target))
   )
 
+(define (=category? cat1 cat2)
+  (and  (equal? (category-objects cat1)(category-objects cat2))
+        (equal? (category-morphisms cat1)(category-morphisms cat2))))
+ 
 (define (opposite cat)
   (category (category-objects cat)
             (for/set ([m (in-set (category-morphisms cat))])
@@ -77,6 +82,15 @@
           [(equal? identity (third y)) (third x)]
           [else (flatten (list (third x) (third y)))]
           )))
+
+(define (add-object cat obj)
+  (category
+   (set-add (category-objects cat) obj)
+   (set-add (category-morphisms cat) ((category-identities cat) obj))
+   (category-identities cat)
+   (category-composition cat)
+   (category-target cat)
+   (category-source cat)))
   
 (define Empty
   (category (set) (set)
